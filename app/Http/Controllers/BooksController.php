@@ -19,8 +19,61 @@ class BooksController extends Controller
             'books' => $books
         ]);
     }
-    public function cart(Request $request, $id){
+    public function cart(){
+        return view('bookstore.cart');
+    }
+    public function addToCart($id){
         $book = Books::find($id);
+        if (!$book){
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        //if cart is empty then this is the first product 
+        if (!$cart){
+            $cart = [
+                $id => [
+                    "name" => $book->name, 
+                    "quantity" => 1, 
+                    "price" => $book->price, 
+                    "thumbnail"=>$book->thumbnail
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        //if cart not empty then check if this product exists then increment quantity
+        if (isset($cart[$id])){
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        //if item does not exist in the cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "name" => $book->name,
+            "quantity" => 1,
+            "price" => $book->price, 
+            "thumbnail"=>$book->thumbnail
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+    public function update(Request $request){
+        if($request->id and $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+    public function remove(Request $request){
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])){
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
     }
     public function store(){
         $cart = new Cart();

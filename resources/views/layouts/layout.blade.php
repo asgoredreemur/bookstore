@@ -40,4 +40,7 @@
     <div>
     @yield('content')
     </div>
+    <div>
+    @yield('scripts')
+    </div>
 </body>
