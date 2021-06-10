@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\BooksController::class, 'index']);
 Route::get('/books', [App\Http\Controllers\BooksController::class, 'show']);
 Route::get('/cart', [App\Http\Controllers\BooksController::class, 'cart'])->middleware('auth');
-Route::get('add-to-cart/{id}', [App\Http\Controllers\BooksController::class, 'addToCart'])->middleware('auth');
-Route::get('update-cart', [App\Http\Controllers\BooksController::class, 'update']);
-Route::delete('remove-from-cart', [App\Http\Controllers\BooksController::class, 'remove']);
-
+Route::post('/books', [App\Http\Controllers\BooksController::class, 'store']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
