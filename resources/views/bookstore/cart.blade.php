@@ -35,7 +35,7 @@
             <td>${{ $details['price'] }}</td>
             <td><input type="number" value="{{ $details['quantity'] }}"></td>
             <td>${{ $details['price'] * $details['quantity'] }}</td>
-            <td><button data-id="{{ $id }}"><i class="fa"></i></button></td>
+            <td><a href="{{url('update-cart')}}">Update</a><a href="{{url('remove-from-cart')}}">Delete</a></td>
         </tr>
         @endforeach
     @endif
@@ -50,43 +50,3 @@
     
 @endsection
 
-@section('scripts')
-
-
-    <script type="text/javascript">
-
-        $(".update-cart").click(function (e) {
-           e.preventDefault();
-
-           var ele = $(this);
-
-            $.ajax({
-               url: '{{ url('update-cart') }}',
-               method: "patch",
-               data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
-               success: function (response) {
-                   window.location.reload();
-               }
-            });
-        });
-
-        $(".remove-from-cart").click(function (e) {
-            e.preventDefault();
-
-            var ele = $(this);
-
-            if(confirm("Are you sure")) {
-                $.ajax({
-                    url: '{{ url('remove-from-cart') }}',
-                    method: "DELETE",
-                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
-                    success: function (response) {
-                        window.location.reload();
-                    }
-                });
-            }
-        });
-
-    </script>
-
-@endsection
