@@ -4,6 +4,11 @@
 
 <div class="content" align="center">
     <h3>Cart</h3>
+    @if ($carts->isEmpty())
+        <p>You cart is empty</p>
+        <img src="/img/Book lover-bro.png" alt="" class="cartimage">
+        <p><a href="{{ url('/books') }}" class="cartbrowse">Browse Some Books</a></p>
+    @else
     <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
@@ -17,28 +22,33 @@
         <tbody>
 
     <?php $total = 0?>
-
-    @if (session('cart'))
-        @foreach(session('cart') as $id => $details)      
-        <?php $total += $details['price'] * $details['quantity'] ?>
+           
+        @foreach($carts as $cart)      
+        <?php $total += $cart->price * $cart->quantity ?>
 
         <tr>
             <td>
                 <div class="row">
-                    <div class="col"><img src="/img/covers/{{ $details['thumbnail'] }}" class="thumbnails">
+                    <div class="col"><img src="/img/covers/{{ $cart->thumbnail }}" class="thumbnails">
                     </div>
                     <div>
-                        <h4>{{ $details['name'] }}</h4>
+                        <h4>{{ $cart->productname }}</h4>
                     </div>
                 </div>
             </td>
-            <td>${{ $details['price'] }}</td>
-            <td><input type="number" value="{{ $details['quantity'] }}"></td>
-            <td>${{ $details['price'] * $details['quantity'] }}</td>
-            <td><button data-id="{{ $id }}"><i class="fa"></i></button></td>
+            <td>${{ $cart->price }}</td>
+            <td><input type="number" value="{{ $cart->quantity }}"></td>
+            <td>${{ $cart->price * $cart->quantity }}</td>
+            <td>
+            <form action="{{ url("remove-from-cart") }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" value={{ $cart->id }}>
+                <button>Delete</button>
+            </form>
+            </td>
         </tr>
         @endforeach
-    @endif
         </tbody>
         <tfoot>
             <tr>
@@ -46,47 +56,7 @@
             </tr>
         </tfoot>
     </table>
+    @endif
 </div>
     
-@endsection
-
-@section('scripts')
-
-
-    <script type="text/javascript">
-
-        $(".update-cart").click(function (e) {
-           e.preventDefault();
-
-           var ele = $(this);
-
-            $.ajax({
-               url: '{{ url('update-cart') }}',
-               method: "patch",
-               data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
-               success: function (response) {
-                   window.location.reload();
-               }
-            });
-        });
-
-        $(".remove-from-cart").click(function (e) {
-            e.preventDefault();
-
-            var ele = $(this);
-
-            if(confirm("Are you sure")) {
-                $.ajax({
-                    url: '{{ url('remove-from-cart') }}',
-                    method: "DELETE",
-                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
-                    success: function (response) {
-                        window.location.reload();
-                    }
-                });
-            }
-        });
-
-    </script>
-
 @endsection
