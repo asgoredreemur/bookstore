@@ -12,11 +12,11 @@
     <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
-            <th style="width:50%">Product</th>
+            <th style="width:30%">Product</th>
             <th style="width:10%">Price</th>
             <th style="width:8%">Quantity</th>
-            <th style="width:22%" class="text-center">Subtotal</th>
-            <th style="width:10%"></th>
+            <th style="width:8%" class="text-center">Subtotal</th>
+            <th style="width:5%"></th>
         </tr>
         </thead>
         <tbody>
@@ -26,8 +26,8 @@
         @foreach($carts as $cart)      
         <?php $total += $cart->price * $cart->quantity ?>
 
-        <tr>
-            <td>
+        <tr class="productrow">
+            <td class="tableitem" id="nameimage">
                 <div class="row">
                     <div class="col"><img src="/img/covers/{{ $cart->thumbnail }}" class="thumbnails">
                     </div>
@@ -36,16 +36,10 @@
                     </div>
                 </div>
             </td>
-<<<<<<< HEAD
-            <td>${{ $details['price'] }}</td>
-            <td><input type="number" value="{{ $details['quantity'] }}"></td>
-            <td>${{ $details['price'] * $details['quantity'] }}</td>
-            <td><a href="{{url('update-cart')}}">Update</a><a href="{{url('remove-from-cart')}}">Delete</a></td>
-=======
-            <td>${{ $cart->price }}</td>
-            <td><input type="number" value="{{ $cart->quantity }}"></td>
-            <td>${{ $cart->price * $cart->quantity }}</td>
-            <td>
+            <td class="tableitem" id="price">${{ $cart->price }}</td>
+            <td class="tableitem" id="quantity"><input type="number" value="{{ $cart->quantity }}" min="1" max="10"></td>
+            <td class="tableitem" id="subtotal">${{ $cart->price * $cart->quantity }}</td>
+            <td class="tableitem" id="action">
             <form action="{{ url("remove-from-cart") }}" method="POST">
                 @csrf
                 @method('DELETE')
@@ -53,22 +47,15 @@
                 <button>Delete</button>
             </form>
             </td>
->>>>>>> 40255723e76fa80cf79cecb2aaed9bcb05d9a79d
         </tr>
         @endforeach
         </tbody>
         <tfoot>
             <tr>
-                <td><strong>Total {{ $total }}</strong></td>
+                <td><strong>Total: ${{ $total }}</strong></td>
             </tr>
         </tfoot>
     </table>
     @endif
 </div>
-    
-<<<<<<< HEAD
 @endsection
-
-=======
-@endsection
->>>>>>> 40255723e76fa80cf79cecb2aaed9bcb05d9a79d

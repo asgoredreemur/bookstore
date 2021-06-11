@@ -15,10 +15,8 @@
                 <form action="{{ url('/books') }}" method="POST">
                 @csrf
                 <h3>{{ $book->name }}</h3>
-                @foreach($carts as $cart)
-                @endforeach
                 <table><tr><td><img src="/img/covers/{{ $book->thumbnail }}" alt="" class="thumbnails">
-                <p>Price: ${{ $book->price }} Quantity: <input type="number" name="quantity" value="1"><input type="submit" name="add" value="Add To Cart"></p></td>
+                <p>Price: ${{ $book->price }} Quantity: <input type="number" name="quantity" value="1" min="1" max="10"><input type="submit" name="add" value="Add To Cart"></p></td>
                 <td>{{ $book->description }}</td></tr></table>
                 <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="username" value="{{ Auth::user()->name }}">
