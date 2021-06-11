@@ -57,3 +57,6 @@ input[type='number']{
     border: 1px solid black;
     border-collapse: collapse;
 }
+.button{
+    background-color: yellow;
+}

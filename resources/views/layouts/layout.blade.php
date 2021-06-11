@@ -16,10 +16,12 @@
                             @endif
                         @else
                             <div class="nav-item dropdown">
-                                <a href="{{ url('/cart') }}" style="color: yellow" >Cart&nbsp;</a>
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <p>
+                                <img src="/img/userlogo.png" height="35"><a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Hi, {{ Auth::user()->name }}
                                 </a>
+                                <img src="/img/cartlogo.png" height="35"><a href="{{ url('/cart') }}" style="color: yellow" >Cart&nbsp;</a>
+                                </p>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"

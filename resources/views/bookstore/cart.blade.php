@@ -52,7 +52,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td><strong>Total: ${{ $total }}</strong></td>
+                <td><strong>Total: ${{ $total }}</strong><p><a href="{{url("/checkout")}}">Proceed to Checkout &nbsp;</a><a href="{{url("/books")}}" class="button">Continue Shopping</p></td>
             </tr>
         </tfoot>
     </table>
