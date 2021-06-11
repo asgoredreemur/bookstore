@@ -35,7 +35,7 @@ a{
     color: orangered;
 }
 .thumbnails{
-    height: 300;
+    height: 200;
 }
 .cartimage{
     height: 500;
@@ -44,5 +44,19 @@ a{
     text-align: center;
 }
 .mssg{
+    background-color: yellow;
+}
+input[type='number']{
+    width: 40px;
+} 
+.tableitem{
+    text-align:center;
+}
+.productrow{
+    background-color: beige;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.button{
     background-color: yellow;
 }
