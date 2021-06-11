@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2021 at 02:37 PM
+-- Generation Time: Jun 11, 2021 at 10:04 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -63,18 +63,19 @@ CREATE TABLE `carts` (
   `userid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `productid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `productname` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `productname` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` int(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `created_at`, `updated_at`, `username`, `userid`, `productid`, `price`, `status`, `productname`) VALUES
-(11, '2021-05-31 14:58:26', '2021-05-31 14:58:26', 'Cyril Oaks', '1', '1', '5', 'Pending', 'Harry Potter and the Chamber of Secrets'),
-(12, '2021-05-31 15:40:52', '2021-05-31 15:40:52', 'Cyril Oaks', '1', '2', '10', 'Pending', 'Futurama'),
-(13, '2021-05-31 15:59:47', '2021-05-31 15:59:47', 'Cyril Oaks', '1', '1', '5', 'Pending', 'Harry Potter and the Chamber of Secrets');
+INSERT INTO `carts` (`id`, `created_at`, `updated_at`, `username`, `userid`, `productid`, `price`, `productname`, `thumbnail`, `quantity`) VALUES
+(14, '2021-06-11 03:16:57', '2021-06-11 03:16:57', 'Cyril Oaks', '1', '1', '5', 'Harry Potter and the Chamber of Secrets', 'chamberofsecrets.jpg', 2),
+(15, '2021-06-11 04:11:42', '2021-06-11 04:11:42', 'Cyril Oaks', '1', '2', '10', 'Futurama', 'futurama.jpg', 1),
+(16, '2021-06-11 04:43:18', '2021-06-11 04:43:18', 'Cyril Oaks', '1', '5', '10', 'Yseult', 'yseult.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -208,7 +209,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
