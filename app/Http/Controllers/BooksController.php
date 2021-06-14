@@ -58,4 +58,10 @@ class BooksController extends Controller
         }
         return redirect('/books')->with('mssg', 'Added to Cart');
     }
+    public function checkout(){
+        $carts = Cart::where("userid", session("userid"))->get();
+        return view('bookstore.checkout', [
+            'carts' => $carts
+        ]);
+    }
 }
