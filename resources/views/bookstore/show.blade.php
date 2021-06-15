@@ -4,7 +4,7 @@
     <div class="content">
         <div class="topnav">
             <form action="">
-            <input type="text" placeholder="Search...">
+            <input type="text" name="search" placeholder="Search...">
             <button type="submit" class="submit">Search</button>
             </form>
         </div>

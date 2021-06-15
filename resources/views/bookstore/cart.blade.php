@@ -44,7 +44,7 @@
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" value={{ $cart->id }}>
-                <button>Delete</button>
+                <button>Remove</button>
             </form>
             </td>
         </tr>
