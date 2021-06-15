@@ -31,6 +31,12 @@
             <h3><strong>PAYMENT METHOD</strong></h3>
             <input type="radio" id="card" name="payment" value="card" required>
             <label for="card">Card</label><br>
+            <input type="number" id="cardno" name="card" value="cardno">
+            <label for="cardno">Card Number</label><br>
+            <input type="number" id="cvv" name="cvv" value="cvv">
+            <label for="cvv">CVV</label><br>
+            <input type="date" id="expiration" name="expiration" value="expiration">
+            <label for="expiration">Expiry Date</label><br>
             <input type="radio" id="cash" name="payment" value="cash">
             <label for="cash">Cash on Delivery</label><br>
             <input type="submit" value="Confirm Order" name="submit">
