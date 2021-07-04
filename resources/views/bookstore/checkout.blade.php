@@ -29,17 +29,23 @@
         </div>
         <div>
             <h3><strong>PAYMENT METHOD</strong></h3>
-            <input type="radio" id="card" name="payment" value="card" required>
-            <label for="card">Card</label><br>
-            <input type="number" id="cardno" name="card" value="cardno">
-            <label for="cardno">Card Number</label><br>
-            <input type="number" id="cvv" name="cvv" value="cvv">
-            <label for="cvv">CVV</label><br>
-            <input type="date" id="expiration" name="expiration" value="expiration">
-            <label for="expiration">Expiry Date</label><br>
-            <input type="radio" id="cash" name="payment" value="cash">
-            <label for="cash">Cash on Delivery</label><br>
-            <input type="submit" value="Confirm Order" name="submit">
+            <div class="stripe">
+                <div class="links">
+                    <form action="/api/payment" method="POST">
+                        <script
+                        src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
+                        data-key="pk_test_51J9dlhLIoC6UpHgDK5bntMkjcnxvk0VGfOpns8JWxtaCOb0NlxYutTLXMyRW9a5U9lSSeLT0ahAekRABo23DOj8Z00D6AjKnRi"
+                        data-amount="10000"
+                        data-name="Hardcover Checkout"
+                        data-description="Complete Payment"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto"
+                        data-currency="usd">
+                    </script>
+                    </form>
+                </div>
+            </div>
         </div>
         </form>
         </td>
