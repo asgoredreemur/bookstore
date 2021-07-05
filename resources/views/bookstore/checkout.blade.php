@@ -36,7 +36,11 @@
                         src="https://checkout.stripe.com/checkout.js"
                         class="stripe-button"
                         data-key="pk_test_51J9dlhLIoC6UpHgDK5bntMkjcnxvk0VGfOpns8JWxtaCOb0NlxYutTLXMyRW9a5U9lSSeLT0ahAekRABo23DOj8Z00D6AjKnRi"
-                        data-amount="10000"
+                            <?php $total = 0?>
+                            @foreach($carts as $cart)      
+                            <?php $total += $cart->price * $cart->quantity ?>
+                            @endforeach
+                        data-amount={{$total * 100}}
                         data-name="Hardcover Checkout"
                         data-description="Complete Payment"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
@@ -59,6 +63,7 @@
                         <td><table><tr><td>{{ $cart->productname }}</td></tr><tr><td>${{ $cart->price }}</td></tr><tr><td>Qty: {{ $cart->quantity }}</td></tr></table></td>
                     </tr>
                 </table>
+                <strong>Total: {{$total}}</strong>
             @endforeach
         </td>
         </tr>
